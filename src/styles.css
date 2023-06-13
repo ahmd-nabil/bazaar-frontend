@@ -3,8 +3,6 @@
     grid-template-areas:
         'header'
         'main-content'
-        'left-sidebar'
-        'right-sidebar'
         'footer';
 }
 
@@ -16,23 +14,20 @@
 /* assign columns to grid areas */
 .holy-grail-grid > .header {
     grid-area:header;
-    background:#f97171;
 }
 .holy-grail-grid > .main-content {
     grid-area:main-content;
-    background:#fff;
 }
 .holy-grail-grid > .left-sidebar {
     grid-area:left-sidebar;
-    background:#f5d55f;
 }
+
 .holy-grail-grid > .right-sidebar {
     grid-area:right-sidebar;
-    background:#c5ed77;
 }
+
 .holy-grail-grid > .footer {
     grid-area:footer;
-    background:#72c2f1;
 }
 
 html {
@@ -57,7 +52,7 @@ html {
         grid-template-columns: repeat(4, 1fr);
         grid-template-areas:
             'header header header header'
-            'left-sidebar main-content main-content right-sidebar'
+            'main-content main-content main-content main-content'
             'footer footer footer footer';
     }
 }
