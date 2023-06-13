@@ -14,3 +14,16 @@ a {
       text-align:center
     }
   }
+  .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: #2d3e50;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  
+  .logo span {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #ff6b6b;
+  }
