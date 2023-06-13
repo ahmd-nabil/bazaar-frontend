@@ -2,7 +2,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 mb-4">
-          <img src="https://via.placeholder.com/1200x300" alt="Banner Image" class="img-fluid">
+          <img src="\assets\images\banner.jpg" alt="Banner Image" class="img-fluid">
         </div>
       </div>
       <div class="row">
@@ -59,9 +59,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 mb-4">
+        <!-- <div class="col-12 mb-4">
           <img src="https://via.placeholder.com/1200x300" alt="Banner Image" class="img-fluid">
-        </div>
+        </div> -->
       </div>
       <div class="row">
         <div class="col-md-4 mb-4">
@@ -111,8 +111,8 @@
               </div>
             </div>
             <div class="card-body">
-              <h5 [textContent]="product.name" class="card-title mb-0">Product Name</h5>
-              <p [textContent]="product.unitPrice" class="card-text">$99.99</p>
+              <h5 class="card-title mb-0">{{ product.name | slice:0:21 }} <span ng-show="product.name.length > 25">...</span></h5>
+              <p class="card-text"> {{ product.unitPrice | currency:'EGP' }}</p>
             </div>
           </div>
         </div>
