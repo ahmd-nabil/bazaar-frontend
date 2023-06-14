@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
-import { CategoryProductsComponent } from './components/category-products/category-products.component'
+import { ProductsComponent } from './components/products/products.component'
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { CategoryProductsComponent } from './components/category-products/catego
     NavbarComponent,
     MainComponent,
     CategoriesListComponent,
-    CategoryProductsComponent
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

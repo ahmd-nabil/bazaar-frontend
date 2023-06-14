@@ -4,11 +4,11 @@ import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
-  selector: 'app-category-products',
-  templateUrl: './category-products.component.html',
-  styleUrls: ['./category-products.component.css']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class CategoryProductsComponent implements OnInit{
+export class ProductsComponent implements OnInit{
   products: Product[] = [];
   categoryId ?: number;
   search ?: string;
