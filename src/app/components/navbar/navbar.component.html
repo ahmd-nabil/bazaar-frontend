@@ -11,19 +11,22 @@
     </div>
 </div><nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><h1 class="logo"><span>B</span>azaar</h1></a>
+    <a class="navbar-brand" routerLink="/"><h1 class="logo"><span>B</span>azaar</h1></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-home me-1"></i>Home</a>
+          <a class="nav-link" aria-current="page" routerLink="/" routerLinkActive="active"><i class="fas fa-home me-1"></i>Home</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#"><i class="fas fa-shopping-bag me-1"></i>Shop</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/categories" routerLinkActive="active"><i class="fas fa-th-list me-1"></i>Categories</a>
         </li>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategories" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-th-list me-1"></i>Categories
           </a>
@@ -33,7 +36,7 @@
             <li><a class="dropdown-item" href="#">Category 3</a></li>
             <li><a class="dropdown-item" href="#">Category 4</a></li>
           </ul>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="fas fa-info-circle me-1"></i>About</a>
         </li>

@@ -9,13 +9,17 @@ import { MainComponent } from './components/main/main.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ClipboardModule } from '@angular/cdk/clipboard'
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { CategoriesListComponent } from './components/categories-list/categories-list.component';
+import { CategoryProductsComponent } from './components/category-products/category-products.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    MainComponent
+    MainComponent,
+    CategoriesListComponent,
+    CategoryProductsComponent
   ],
   imports: [
     BrowserModule,
