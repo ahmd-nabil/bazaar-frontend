@@ -8,7 +8,7 @@ import { Page } from '../model/page';
   providedIn: 'root'
 })
 export class ProductService {
-  api = "http://localhost:8080/api/v1/products";
+  readonly PRODUCTS_API = "http://localhost:8080/api/v1/products";
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +16,6 @@ export class ProductService {
     const options = categoryId ?
    { params: new HttpParams().set('categoryId', categoryId) } : {};
 
-    return this.http.get<Page<Product>>(this.api, options);
+    return this.http.get<Page<Product>>(this.PRODUCTS_API, options);
   }
 }
