@@ -7,7 +7,7 @@ import { CategoryProductsComponent } from './components/category-products/catego
 const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'categories', component: CategoriesListComponent},
-  {path:':categoryId', component: CategoryProductsComponent},
+  {path:'categories/:categoryId', component: CategoryProductsComponent},
   { path:"**", component: MainComponent }
 ];
 
