@@ -15,12 +15,11 @@ export class CategoryProductsComponent implements OnInit{
     private route: ActivatedRoute,
     private productService: ProductService  
   ) {}
+
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.categoryId = +params['categoryId']
-    });
+    console.log("ON INIT")
+    this.route.params.subscribe(params => this.categoryId = +params['categoryId']);
     
-    this.productService.getAllProducts(this.categoryId)
-    
+    this.productService.getAllProducts(this.categoryId).subscribe(page => this.products = page.content);
   }
 }

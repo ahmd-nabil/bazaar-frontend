@@ -15,9 +15,6 @@ export class CategoriesListComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.categoryService.getAllCategories().subscribe(page => {
-      this.categories = page.content; 
-      console.log(page)
-    });
+    this.categoryService.getAllCategories().subscribe(page => this.categories = page.content);
   }
 }
