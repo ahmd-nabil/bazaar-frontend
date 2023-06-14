@@ -13,6 +13,6 @@ export class MainComponent implements OnInit{
     constructor(private productService: ProductService){}
 
     ngOnInit(): void {
-      this.productService.getAllProducts().subscribe(result => this.products = result);
+      this.productService.getAllProducts().subscribe(page => this.products = page.content);
     }
 }
