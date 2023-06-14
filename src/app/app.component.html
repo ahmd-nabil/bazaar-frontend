@@ -2,8 +2,14 @@
   <header class="header">
     <app-navbar></app-navbar>
   </header>
-  <main class="main-content">
-    <router-outlet></router-outlet>
-  </main>
-  <footer class="footer">Footer</footer>
+    <main class="main-content row">
+      <div class="col-2"></div>
+    <div class="col-8">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-2"></div>
+    </main>
+  <footer class="footer">
+    <app-footer></app-footer>
+  </footer>
 </div>
