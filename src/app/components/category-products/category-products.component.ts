@@ -10,16 +10,20 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CategoryProductsComponent implements OnInit{
   products: Product[] = [];
-  categoryId !: number;
+  categoryId ?: number;
+  search ?: string;
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService  
   ) {}
 
   ngOnInit(): void {
-    console.log("ON INIT")
-    this.route.params.subscribe(params => this.categoryId = +params['categoryId']);
+    this.route.queryParams.subscribe(params => {
+      this.categoryId = +params['categoryId'];
+      this.search = params['search'];
+      this.productService.getAllProducts(this.categoryId, this.search).subscribe(page => this.products = page.content);
+    });
     
-    this.productService.getAllProducts(this.categoryId).subscribe(page => this.products = page.content);
   }
 }

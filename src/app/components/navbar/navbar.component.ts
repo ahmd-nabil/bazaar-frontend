@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { faGithub, faLinkedin, faGoogle } from '@fortawesome/free-brands-svg-icons'
 @Component({
   selector: 'app-navbar',
@@ -10,4 +11,9 @@ export class NavbarComponent {
   faLinkedIn = faLinkedin;
   faGoogle = faGoogle
 
+  constructor(private router: Router) {}
+
+  search(search : string) {
+    this.router.navigate(['products'], {queryParams: {'search': search}});
+  }
 }
