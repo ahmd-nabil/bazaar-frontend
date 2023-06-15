@@ -13,16 +13,24 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProducts(categoryId ?: number, search ?: string): Observable<Page<Product>> {
-    let params = new HttpParams();
+  getAllProducts(
+      pageNumber? : number,
+      categoryId ?: number,
+      search ?: string
+      ): Observable<Page<Product>> {
+    let requestParams = new HttpParams();
     if(categoryId) {
-      params = params.set('categoryId', categoryId);
+      requestParams = requestParams.set('categoryId', categoryId);
     }
 
     if(search) {
-      params = params.set('search', search);
+      requestParams = requestParams.set('search', search);
     }
 
-    return this.http.get<Page<Product>>(this.PRODUCTS_API, {params: params});
+    if(pageNumber) {
+      requestParams = requestParams.set('pageNumber', pageNumber);
+    }
+
+    return this.http.get<Page<Product>>(this.PRODUCTS_API, {params: requestParams});
   }
 }

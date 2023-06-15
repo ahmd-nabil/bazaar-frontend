@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit{
   products: Product[] = [];
   categoryId ?: number;
   search ?: string;
+  pageNumber : number = 1;    // default page is page 1
 
   constructor(
     private route: ActivatedRoute,
@@ -22,8 +23,10 @@ export class ProductsComponent implements OnInit{
     this.route.queryParams.subscribe(params => {
       this.categoryId = +params['categoryId'];
       this.search = params['search'];
-      this.productService.getAllProducts(this.categoryId, this.search).subscribe(page => this.products = page.content);
+      if(params['pageNumber']) this.pageNumber = +params['pageNumber'];
+      this.productService.getAllProducts(this.pageNumber, this.categoryId, this.search).subscribe(page => {
+        console.log(page);
+        this.products = page.content});
     });
-    
   }
 }
