@@ -13,10 +13,11 @@ export class ProductsComponent implements OnInit{
   categoryId ?: number;
   search ?: string;
   pageNumber : number = 1;    // default page is page 1
-
+  totalPages ?: number;
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService  
+    private productService: ProductService ,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -25,8 +26,17 @@ export class ProductsComponent implements OnInit{
       this.search = params['search'];
       if(params['pageNumber']) this.pageNumber = +params['pageNumber'];
       this.productService.getAllProducts(this.pageNumber, this.categoryId, this.search).subscribe(page => {
-        console.log(page);
-        this.products = page.content});
+        this.products = page.content;
+        this.totalPages = page.totalPages;
+      });
     });
+  }
+
+  pageChanged(pageNumber: number) {
+    console.log(pageNumber);
+    this.router.navigate([], {
+      queryParams: {'pageNumber': pageNumber},
+      queryParamsHandling: 'merge'
+    })
   }
 }
