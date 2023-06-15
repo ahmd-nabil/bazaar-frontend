@@ -12,7 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { ProductsComponent } from './components/products/products.component';
-import { FooterComponent } from './components/footer/footer.component'
+import { FooterComponent } from './components/footer/footer.component';
+import { PaginationComponent } from './components/pagination/pagination.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './components/footer/footer.component'
     MainComponent,
     CategoriesListComponent,
     ProductsComponent,
-    FooterComponent
+    FooterComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,7 @@ import { FooterComponent } from './components/footer/footer.component'
     FontAwesomeModule,
     FormsModule,
     BrowserAnimationsModule,
-    ClipboardModule
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

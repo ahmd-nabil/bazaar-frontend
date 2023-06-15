@@ -13,7 +13,7 @@ export class ProductsComponent implements OnInit{
   categoryId ?: number;
   search ?: string;
   pageNumber : number = 1;    // default page is page 1
-  totalPages ?: number;
+  totalPages !: number;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService ,
@@ -30,13 +30,5 @@ export class ProductsComponent implements OnInit{
         this.totalPages = page.totalPages;
       });
     });
-  }
-
-  pageChanged(pageNumber: number) {
-    console.log(pageNumber);
-    this.router.navigate([], {
-      queryParams: {'pageNumber': pageNumber},
-      queryParamsHandling: 'merge'
-    })
   }
 }

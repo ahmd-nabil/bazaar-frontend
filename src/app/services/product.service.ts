@@ -14,9 +14,10 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getAllProducts(
-      pageNumber? : number,
+      pageNumber : number = 1,
       categoryId ?: number,
-      search ?: string
+      search ?: string,
+      pageSize : number = 20
       ): Observable<Page<Product>> {
     let requestParams = new HttpParams();
     if(categoryId) {
@@ -27,10 +28,8 @@ export class ProductService {
       requestParams = requestParams.set('search', search);
     }
 
-    if(pageNumber) {
-      requestParams = requestParams.set('pageNumber', pageNumber);
-    }
-
+    requestParams = requestParams.set('pageNumber', pageNumber);
+    requestParams = requestParams.set('pageSize', pageSize)
     return this.http.get<Page<Product>>(this.PRODUCTS_API, {params: requestParams});
   }
 }
