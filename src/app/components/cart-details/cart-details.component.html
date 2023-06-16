@@ -1,61 +1,72 @@
 <div class="container">
-    <div class="row" *ngIf="cartItems.length > 0">
-      <div class="col-xs-12 col-lg-12 col-xl-8">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Product</th>
-              <th scope="col">Unit Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of cartItems">
-              <td>
-                <div class="d-flex align-items-center">
-                  <img src="{{ item.imageUrl }}" class="mr-3" alt="{{ item.name | slice:0:20 }}" width="100" height="100">
-                  <div style="margin-left: 10px;">
-                    <h5 class="mb-0">{{ item.name }}</h5>
-                    <span class="text-muted">{{ item.description }}</span>
-                  </div>
+  <div class="row" *ngIf="cartItems.length > 0">
+    <div class="col-md-12 d-lg-none">
+      <h5>Cart Summary</h5>
+      <hr>
+      <p class="card-text">Subtotal: {{ subTotal | currency:'EGP'}}</p>
+      <p class="card-text">Shipping: {{ shipping | currency:'EGP'}}</p>
+      <p class="card-text price">Total: {{ subTotal | currency:'EGP'}}</p>
+      <button class="btn btn-primary btn-block">Proceed to Checkout</button>
+    </div>
+    <div class="col-xs-12 col-lg-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td>
+              <div class="d-flex align-items-center">
+                <img src="{{ item.imageUrl }}" class="mr-3" alt="{{ item.name }}" width="100" height="100">
+                <div style="margin-left: 10px;">
+                  <h5 class="mb-0">{{ item.name | slice:0:20 }}</h5>
+                  <span class="text-muted">{{ item.description | slice:0:50}}</span>
                 </div>
-              </td>
-              <td>{{ item.unitPrice | currency:'EGP' }}</td>
-              <td>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary" type="button" (click)="decrementQuantity(item)">
-                      <fa-icon [icon]="minusIcon"></fa-icon>
-                    </button>
-                  </div>
-                  <input type="text" class="form-control text-center" [(ngModel)]="item.quantity">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" (click)="incrementQuantity(item)">
-                      <fa-icon [icon]="plusIcon"></fa-icon>
-                    </button>
-                  </div>
+              </div>
+            </td>
+            <td>{{ item.unitPrice | currency:'EGP' }}</td>
+            <td>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary" type="button" (click)="decrementQuantity(item)">
+                    <fa-icon [icon]="minusIcon"></fa-icon>
+                  </button>
                 </div>
-              </td>
-              <td>{{ item.quantity * item.unitPrice | currency:'EGP' }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-lg-12 col-xl-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Cart Summary</h5>
-            <hr>
-            <p class="card-text">Subtotal: {{ subTotal | currency:'EGP'}}</p>
-            <p class="card-text">Shipping: {{ shipping | currency:'EGP'}}</p>
-            <p class="card-text price">Total: {{ subTotal | currency:'EGP'}}</p>
-            <button class="btn btn-primary btn-block">Proceed to Checkout</button>
-          </div>
+                <input type="text" inputmode="numeric" 
+                    class="form-control text-center"
+                    [ngModel]="item.quantity"
+                    (ngModelChange)="onQuantityChange(item, $event)">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="incrementQuantity(item)">
+                    <fa-icon [icon]="plusIcon"></fa-icon>
+                  </button>
+                </div>
+              </div>
+            </td>
+            <td style="font-weight: bold;">{{ item.quantity * item.unitPrice | currency:'EGP' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-4 d-none d-lg-block">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Cart Summary</h5>
+          <hr>
+          <p class="card-text" style="font-weight: bold;">Subtotal: {{ subTotal | currency:'EGP'}}</p>
+          <p class="card-text" style="font-weight: bold;">Shipping: {{ shipping | currency:'EGP'}}</p>
+          <p class="card-text price">Total: {{ subTotal | currency:'EGP'}}</p>
+          <button class="btn btn-primary btn-block">Proceed to Checkout</button>
         </div>
       </div>
     </div>
-    <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
-      Your shopping cart is empty. start shopping <a routerLink="/">now</a>
-    </div>
   </div>
+  <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
+    Your shopping cart is empty. start shopping <a routerLink="/">now</a>
+  </div>
+</div>

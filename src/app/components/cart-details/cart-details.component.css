@@ -1,0 +1,52 @@
+/* Default styles for the table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table thead th, .table tbody td {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .table tbody td.quantity {
+    text-align: center;
+  }
+  
+  .table tbody td.total {
+    display: none;
+    font-weight: bold;
+  }
+  
+  /* Styles for smaller screens */
+  @media screen and (max-width: 576px) {
+    .table {
+      font-size: 12px;
+    }
+    
+    .table thead th, .table tbody td {
+      padding: 4px;
+      font-size: 12px;
+    }
+    
+    .table tbody td.quantity {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+    
+    .table tbody td img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+@media (max-width: 767px) {
+    .row {
+      flex-direction: column;
+    }
+    .col {
+      width: 100%;
+    }
+    .card {
+      margin-top: 20px;
+    }
+  }
