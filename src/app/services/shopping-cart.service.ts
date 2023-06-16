@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../model/cart-item';
-import { Subject } from 'rxjs';
 import { Product } from '../model/product';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  
   cartItems : CartItem[] = [];
-  totalItems : Subject<number> = new Subject();
-  totalPrice: Subject<number> = new Subject();
+  totalItems : BehaviorSubject<number> = new BehaviorSubject(this.getTotalItems());
+  totalPrice: BehaviorSubject<number> = new BehaviorSubject(this.getTotalPrice());
 
   constructor() { }
 
