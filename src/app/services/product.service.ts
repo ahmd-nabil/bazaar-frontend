@@ -32,4 +32,9 @@ export class ProductService {
     requestParams = requestParams.set('pageSize', pageSize)
     return this.http.get<Page<Product>>(this.PRODUCTS_API, {params: requestParams});
   }
+
+
+  getProductById(productId: number): Observable<Product> {
+    return this.http.get<Product>(`${this.PRODUCTS_API}/${productId}`);
+  }
 }

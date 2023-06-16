@@ -4,16 +4,21 @@
       class="col-lg-3 col-md-6 card product-box">
         <div class="card-header p-0 position-relative fill">
             <img [src]="product.imageUrl" alt="Product Image" class="card-img-top" style="width: 300px; height: 270px;"
-            onerror="src='/assets/images/products/placeholder.png';">
+            onerror="src='/assets/images/products/placeholder.png';"
+            [routerLink]="['/products/',product.id]"
+            >
           <div class="actions position-absolute top-0 end-0 p-3">
             <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i></a>
             <a href="#" class="btn btn-secondary"><i class="bi bi-heart"></i></a>
-            <a href="#" class="btn btn-secondary"><i class="bi bi-eye"></i></a>
           </div>
         </div>
         <div class="card-body">
-          <h2 class="card-title mb-0">{{ product.name | slice:0:50 }} <span *ngIf="product.name!.length>50">...</span></h2>
-          <p class="card-text price"> {{ product.unitPrice | currency:'EGP' }}</p>
+          <h2 
+          [routerLink]="['/products/',product.id]"
+          class="card-title mb-0">{{ product.name | slice:0:50 }} <span *ngIf="product.name!.length>50">...</span></h2>
+          <p 
+          [routerLink]="['/products/',product.id]"
+          class="card-text price"> {{ product.unitPrice | currency:'EGP' }}</p>
         </div>
     </div>
 </div>

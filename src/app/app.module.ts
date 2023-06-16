@@ -13,7 +13,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { PaginationComponent } from './components/pagination/pagination.component'
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     CategoriesListComponent,
     ProductsComponent,
     FooterComponent,
-    PaginationComponent
+    PaginationComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
