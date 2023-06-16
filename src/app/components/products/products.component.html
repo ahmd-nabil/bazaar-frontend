@@ -8,7 +8,7 @@
             [routerLink]="['/products/',product.id]"
             >
           <div class="actions position-absolute top-0 end-0 p-3">
-            <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i></a>
+            <a (click)="addToCart(product)" type="button" id="addToCart" class="btn btn-primary"><i class="bi bi-cart-plus"></i></a>
             <a href="#" class="btn btn-secondary"><i class="bi bi-heart"></i></a>
           </div>
         </div>

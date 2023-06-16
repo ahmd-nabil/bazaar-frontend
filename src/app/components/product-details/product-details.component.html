@@ -21,11 +21,11 @@
     <div class="product-details__info">
       <h2 class="product-details__name" [textContent]="product.name" >Product Name</h2>
       <p class="product-details__description" [textContent]="product.description">Product description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
-      <p class="product-details__price price" [textContent]="product.unitPrice">$9.99</p>
+      <p class="product-details__price price" [textContent]="product.unitPrice | currency:'EGP'">$9.99</p>
       <p class="product-details__stock"[textContent]="'in stock: '+product.unitsInStock" >Units in stock: 10</p>
       <div class="product-details__buttons">
-        <button class="product-details__button--add-to-cart">Add to Cart</button>
-        <button class="product-details__button--buy-now">Buy Now</button>
+        <button class="btn btn-secondary" (click)="addToCart(product)">Add to Cart</button>
+        <button class="btn btn-primary">Buy Now</button>
       </div>
     </div>
   </div>
