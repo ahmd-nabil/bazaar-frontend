@@ -84,7 +84,12 @@ html, body { height: 100%; }
     margin-left: 5px;
 }
 .product-box{
-    margin-bottom:60px
+    margin-bottom:60px;
+}
+
+.product-box:hover{
+    background-color:gainsboro;
+    cursor: pointer;
 }
 .price{
     margin:15px 0 0;
@@ -93,10 +98,10 @@ html, body { height: 100%; }
     font-size: 22px;
 }
 
-.price:hover{
+/* .price:hover{
     color: #d9822b;
     cursor: pointer;
-}
+} */
 
 .product-box h1{
     font-size:18px;
@@ -111,7 +116,7 @@ html, body { height: 100%; }
     font-weight:500;
     color:#585858;
 }
-.product-box h2:hover {
+/* .product-box h2:hover {
     cursor : pointer;
     color: #d9822b;
-}
+} */

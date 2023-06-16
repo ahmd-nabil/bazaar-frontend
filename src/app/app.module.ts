@@ -14,7 +14,8 @@ import { CategoriesListComponent } from './components/categories-list/categories
 import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { ProductDetailsComponent } from './components/product-details/product-details.component'
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { CartStatusComponent } from './components/cart-status/cart-status.component'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     ProductsComponent,
     FooterComponent,
     PaginationComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartStatusComponent
   ],
   imports: [
     BrowserModule,
