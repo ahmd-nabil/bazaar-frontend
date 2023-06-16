@@ -1,7 +1,7 @@
 <div class="row">
     <div 
       *ngFor="let product of products"
-      class="col-lg-3 col-md-6 card">
+      class="col-lg-3 col-md-6 card product-box">
         <div class="card-header p-0 position-relative fill">
             <img [src]="product.imageUrl" alt="Product Image" class="card-img-top" style="width: 300px; height: 270px;"
             onerror="src='/assets/images/products/placeholder.png';">
@@ -12,8 +12,8 @@
           </div>
         </div>
         <div class="card-body">
-          <h6 class="card-title mb-0">{{ product.name | slice:0:20 }} <span *ngIf="product.name!.length>20">...</span></h6>
-          <p class="card-text"> {{ product.unitPrice | currency:'EGP' }}</p>
+          <h2 class="card-title mb-0">{{ product.name | slice:0:50 }} <span *ngIf="product.name!.length>50">...</span></h2>
+          <p class="card-text price"> {{ product.unitPrice | currency:'EGP' }}</p>
         </div>
     </div>
 </div>
