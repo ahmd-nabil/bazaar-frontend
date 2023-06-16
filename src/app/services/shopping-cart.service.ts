@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { CartItem } from '../model/cart-item';
 import { Product } from '../model/product';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -13,12 +13,34 @@ export class ShoppingCartService {
 
   constructor() { }
 
+  notifyAll() {
+    this.totalItems.next(this.getTotalItems());
+    this.totalPrice.next(this.getTotalPrice());
+  }
+
+  changeQuantity(item: CartItem, value: number) {
+    let itemIndx = this.cartItems.findIndex(cartItem => cartItem.id == item.id);
+    value == 0? this.cartItems.splice(itemIndx, 1): this.cartItems[itemIndx].quantity = value;;
+    this.notifyAll();
+  }
+
+  incrementQuantity(item: CartItem) {
+    let itemIndx = this.cartItems.findIndex(cartItem => cartItem.id == item.id);
+    this.cartItems[itemIndx].quantity++;
+    this.notifyAll();
+  }
+
+  decrementQuantity(item: CartItem) {
+    let itemIndx = this.cartItems.findIndex(cartItem => cartItem.id == item.id);
+    this.cartItems[itemIndx].quantity == 1? this.cartItems.splice(itemIndx, 1): this.cartItems[itemIndx].quantity--;
+    this.notifyAll();
+  }
+
   addToCart(product: Product) {
     let item = new CartItem(product);
     const foundCartItem = this.cartItems.find(cartItem => item.id == cartItem.id);
     foundCartItem ? foundCartItem.quantity++ : this.cartItems.unshift(item);
-    this.totalItems.next(this.getTotalItems());
-    this.totalPrice.next(this.getTotalPrice());
+    this.notifyAll();
   }
 
   private getTotalItems(): number {

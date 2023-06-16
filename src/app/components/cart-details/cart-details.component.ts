@@ -10,7 +10,7 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 })
 export class CartDetailsComponent implements OnInit{
   cartItems: CartItem[] = [];
-  subTotal = 999;
+  subTotal = 0;
   shipping = 0;
 
   plusIcon = faPlus;
@@ -22,6 +22,20 @@ export class CartDetailsComponent implements OnInit{
     this.cartItems = this.shoppingCartService.cartItems;
   }
 
-  incrementQuantity(item: CartItem){}
-  decrementQuantity(item: CartItem){}
+  incrementQuantity(item: CartItem) {
+    this.shoppingCartService.incrementQuantity(item);
+  }
+
+  decrementQuantity(item: CartItem) {
+    this.shoppingCartService.decrementQuantity(item);
+  }
+
+  onQuantityChange(item: CartItem, input: string) {
+    const pattern = /^[0-9]*$/;
+    if(!pattern.test(input) || +input <= 0) {
+      this.shoppingCartService.changeQuantity(item, 0);
+      return;
+    }
+    this.shoppingCartService.changeQuantity(item, +input);
+  }
 }
