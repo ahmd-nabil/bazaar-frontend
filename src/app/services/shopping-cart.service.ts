@@ -6,16 +6,25 @@ import { BehaviorSubject, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ShoppingCartService {
+export class ShoppingCartService{
   cartItems : CartItem[] = [];
   totalItems : BehaviorSubject<number> = new BehaviorSubject(this.getTotalItems());
   totalPrice: BehaviorSubject<number> = new BehaviorSubject(this.getTotalPrice());
 
-  constructor() { }
+  constructor() {
+    const localStorageCart = localStorage.getItem('shoppingCart');
+    if(localStorageCart) {
+      this.cartItems = JSON.parse(localStorageCart);
+    }
+    this.notifyAll();
+  }
 
   notifyAll() {
     this.totalItems.next(this.getTotalItems());
     this.totalPrice.next(this.getTotalPrice());
+
+    // assuming that localstorage change is also a notification
+    localStorage.setItem('shoppingCart', JSON.stringify(this.cartItems));
   }
 
   changeQuantity(item: CartItem, value: number) {
