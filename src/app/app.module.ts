@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './components/main/main.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
@@ -16,7 +16,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
-import { CartDetailsComponent } from './components/cart-details/cart-details.component'
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
     PaginationComponent,
     ProductDetailsComponent,
     CartStatusComponent,
-    CartDetailsComponent
+    CartDetailsComponent,
+    CheckoutFormComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
     FormsModule,
     BrowserAnimationsModule,
     ClipboardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,100 @@
+<div class="container">
+    <h1 class="text-center my-5">Checkout Form</h1>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+      <div class="row" style="margin-bottom:100px;">
+        <div class="col-md-6"  formGroupName="customer">
+          <h4>Customer Info</h4>
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+          </div>
+        </div>
+        <div class="col-md-6" formGroupName="creditCard">
+          <h4>Payment Info</h4>
+          <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber">
+          </div>
+          <div class="form-group">
+            <label for="cardExpiry">Card Expiry</label>
+            <input type="text" placeholder="MM/YY" class="form-control" id="cardExpiry" formControlName="cardExpiry">
+          </div>
+          <div class="form-group">
+            <label for="cardCVC">CVC</label>
+            <input type="text" class="form-control" id="cardCVC" formControlName="cardCVC">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" formGroupName="shippingAddress">
+          <h4>Shipping Address</h4>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" formControlName="country">
+          </div>
+          <div class="form-group">
+            <label for="street">Street</label>
+            <input type="text" class="form-control" id="street" formControlName="street">
+          </div>
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" formControlName="city">
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" class="form-control" id="state" formControlName="state">
+          </div>
+          <div class="form-group">
+            <label for="zipcode">Zipcode</label>
+            <input type="text" class="form-control" id="zipcode" formControlName="zipcode">
+          </div>
+        </div>
+        <div class="col-md-6" formGroupName="billingAddress">
+          <h4>Billing Address</h4>
+          <div class="form-group">
+            <label for="billingCountry">Country</label>
+            <input type="text" class="form-control" id="billingCountry" formControlName="billingCountry">
+          </div>
+          <div class="form-group">
+            <label for="billingStreet">Street</label>
+            <input type="text" class="form-control" id="billingStreet" formControlName="billingStreet">
+          </div>
+          <div class="form-group">
+            <label for="billingCity">City</label>
+            <input type="text" class="form-control" id="billingCity" formControlName="billingCity">
+          </div>
+          <div class="form-group">
+            <label for="billingState">State</label>
+            <input type="text" class="form-control" id="billingState" formControlName="billingState">
+          </div>
+          <div class="form-group">
+            <label for="billingZipcode">Zipcode</label>
+            <input type="text" class="form-control" id="billingZipcode" formControlName="billingZipcode">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="sameAsShipping" formControlName="sameAsShipping" (change)="onSameAsShippingChange($event)">
+            <label class="form-check-label" for="sameAsShipping">Same as Shipping Address</label>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Review Order <hr></div>
+        <div class="card-body">
+            <p class="card-text" style="font-weight: bold;">Subtotal: {{ subTotal | currency:'EGP'}}</p>
+            <p class="card-text" style="font-weight: bold;">Shipping: {{ shipping | currency:'EGP'}}</p>
+            <p class="card-text price">Total: {{ subTotal | currency:'EGP'}}</p>
+          </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+        </div>
+      </div>
+    </form>
+  </div>
