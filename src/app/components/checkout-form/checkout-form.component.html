@@ -2,34 +2,56 @@
     <h1 class="text-center my-5">Checkout Form</h1>
     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
       <div class="row" style="margin-bottom:100px;">
-        <div class="col-md-6"  formGroupName="customer">
+        <div class="col-md-6" formGroupName="customer">
           <h4>Customer Info</h4>
           <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" formControlName="firstName">
+            <input type="text" class="form-control" id="firstName" formControlName="firstName" [class.is-invalid]="checkoutForm.get('customer.firstName')?.invalid && (checkoutForm.get('customer.firstName')?.dirty || checkoutForm.get('customer.firstName')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('customer.firstName')?.invalid && (checkoutForm.get('customer.firstName')?.dirty || checkoutForm.get('customer.firstName')?.touched)">
+              <div *ngIf="checkoutForm.get('customer.firstName')?.errors?.['required']">First name is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            <input type="text" class="form-control" id="lastName" formControlName="lastName" [class.is-invalid]="checkoutForm.get('customer.lastName')?.invalid && (checkoutForm.get('customer.lastName')?.dirty || checkoutForm.get('customer.lastName')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('customer.lastName')?.invalid && (checkoutForm.get('customer.lastName')?.dirty || checkoutForm.get('customer.lastName')?.touched)">
+              <div *ngIf="checkoutForm.get('customer.lastName')?.errors?.['required']">Last name is required</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" formControlName="email">
+            <input type="email" class="form-control" id="email" formControlName="email" [class.is-invalid]="checkoutForm.get('customer.email')?.invalid && (checkoutForm.get('customer.email')?.dirty || checkoutForm.get('customer.email')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('customer.email')?.invalid && (checkoutForm.get('customer.email')?.dirty || checkoutForm.get('customer.email')?.touched)">
+              <div *ngIf="checkoutForm.get('customer.email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="checkoutForm.get('customer.email')?.errors?.['email']">Invalid email format.</div>
+            </div>
           </div>
         </div>
         <div class="col-md-6" formGroupName="creditCard">
           <h4>Payment Info</h4>
           <div class="form-group">
             <label for="cardNumber">Card Number</label>
-            <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber">
+            <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" [class.is-invalid]="checkoutForm.get('creditCard.cardNumber')?.invalid && (checkoutForm.get('creditCard.cardNumber')?.dirty || checkoutForm.get('creditCard.cardNumber')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('creditCard.cardNumber')?.invalid && (checkoutForm.get('creditCard.cardNumber')?.dirty || checkoutForm.get('creditCard.cardNumber')?.touched)">
+              <div *ngIf="checkoutForm.get('creditCard.cardNumber')?.errors?.['required']">Card number is required.</div>
+              <div *ngIf="checkoutForm.get('creditCard.cardNumber')?.errors?.['pattern']">Card number must be a 16-digit number.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="cardExpiry">Card Expiry</label>
-            <input type="text" placeholder="MM/YY" class="form-control" id="cardExpiry" formControlName="cardExpiry">
+            <input type="text" placeholder="MM/YY" class="form-control" id="cardExpiry" formControlName="cardExpiry" [class.is-invalid]="checkoutForm.get('creditCard.cardExpiry')?.invalid && (checkoutForm.get('creditCard.cardExpiry')?.dirty || checkoutForm.get('creditCard.cardExpiry')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('creditCard.cardExpiry')?.invalid && (checkoutForm.get('creditCard.cardExpiry')?.dirty || checkoutForm.get('creditCard.cardExpiry')?.touched)">
+              <div *ngIf="checkoutForm.get('creditCard.cardExpiry')?.errors?.['required']">Card expiry is required.</div>
+              <div *ngIf="checkoutForm.get('creditCard.cardExpiry')?.errors?.['pattern']">Card expiry must be in the format MM/YY.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="cardCVC">CVC</label>
-            <input type="text" class="form-control" id="cardCVC" formControlName="cardCVC">
+            <input type="text" class="form-control" id="cardCVC" formControlName="cardCVC" [class.is-invalid]="checkoutForm.get('creditCard.cardCVC')?.invalid && (checkoutForm.get('creditCard.cardCVC')?.dirty || checkoutForm.get('creditCard.cardCVC')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('creditCard.cardCVC')?.invalid && (checkoutForm.get('creditCard.cardCVC')?.dirty || checkoutForm.get('creditCard.cardCVC')?.touched)">
+              <div *ngIf="checkoutForm.get('creditCard.cardCVC')?.errors?.['required']">CVC is ['required'].</div>
+              <div *ngIf="checkoutForm.get('creditCard.cardCVC')?.errors?.['pattern']">CVC must be a 3-digit number.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -38,46 +60,78 @@
           <h4>Shipping Address</h4>
           <div class="form-group">
             <label for="country">Country</label>
-            <input type="text" class="form-control" id="country" formControlName="country">
+            <input type="text" class="form-control" id="country" formControlName="country" [class.is-invalid]="checkoutForm.get('shippingAddress.country')?.invalid && (checkoutForm.get('shippingAddress.country')?.dirty || checkoutForm.get('shippingAddress.country')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('shippingAddress.country')?.invalid && (checkoutForm.get('shippingAddress.country')?.dirty || checkoutForm.get('shippingAddress.country')?.touched)">
+              <div *ngIf="checkoutForm.get('shippingAddress.country')?.errors?.['required']">Country is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="street">Street</label>
-            <input type="text" class="form-control" id="street" formControlName="street">
+            <input type="text" class="form-control" id="street" formControlName="street" [class.is-invalid]="checkoutForm.get('shippingAddress.street')?.invalid && (checkoutForm.get('shippingAddress.street')?.dirty || checkoutForm.get('shippingAddress.street')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('shippingAddress.street')?.invalid && (checkoutForm.get('shippingAddress.street')?.dirty || checkoutForm.get('shippingAddress.street')?.touched)">
+              <div *ngIf="checkoutForm.get('shippingAddress.street')?.errors?.['required']">Street is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="city">City</label>
-            <input type="text" class="form-control" id="city" formControlName="city">
+            <input type="text" class="form-control" id="city" formControlName="city" [class.is-invalid]="checkoutForm.get('shippingAddress.city')?.invalid && (checkoutForm.get('shippingAddress.city')?.dirty || checkoutForm.get('shippingAddress.city')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('shippingAddress.city')?.invalid && (checkoutForm.get('shippingAddress.city')?.dirty || checkoutForm.get('shippingAddress.city')?.touched)">
+              <div *ngIf="checkoutForm.get('shippingAddress.city')?.errors?.['required']">City is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="state">State</label>
-            <input type="text" class="form-control" id="state" formControlName="state">
+            <input type="text" class="form-control" id="state" formControlName="state" [class.is-invalid]="checkoutForm.get('shippingAddress.state')?.invalid && (checkoutForm.get('shippingAddress.state')?.dirty || checkoutForm.get('shippingAddress.state')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('shippingAddress.state')?.invalid && (checkoutForm.get('shippingAddress.state')?.dirty || checkoutForm.get('shippingAddress.state')?.touched)">
+              <div *ngIf="checkoutForm.get('shippingAddress.state')?.errors?.['required']">State is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="zipcode">Zipcode</label>
-            <input type="text" class="form-control" id="zipcode" formControlName="zipcode">
+            <input type="text" class="form-control" id="zipcode" formControlName="zipcode" [class.is-invalid]="checkoutForm.get('shippingAddress.zipcode')?.invalid && (checkoutForm.get('shippingAddress.zipcode')?.dirty || checkoutForm.get('shippingAddress.zipcode')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('shippingAddress.zipcode')?.invalid && (checkoutForm.get('shippingAddress.zipcode')?.dirty || checkoutForm.get('shippingAddress.zipcode')?.touched)">
+              <div *ngIf="checkoutForm.get('shippingAddress.zipcode')?.errors?.['required']">Zipcode is required.</div>
+              <div *ngIf="checkoutForm.get('shippingAddress.zipcode')?.errors?.['pattern']">Zipcode must be a 5-digit number.</div>
+            </div>
           </div>
         </div>
         <div class="col-md-6" formGroupName="billingAddress">
           <h4>Billing Address</h4>
           <div class="form-group">
             <label for="billingCountry">Country</label>
-            <input type="text" class="form-control" id="billingCountry" formControlName="billingCountry">
+            <input type="text" class="form-control" id="billingCountry" formControlName="billingCountry" [class.is-invalid]="checkoutForm.get('billingAddress.billingCountry')?.invalid && (checkoutForm.get('billingAddress.billingCountry')?.dirty || checkoutForm.get('billingAddress.billingCountry')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('billingAddress.billingCountry')?.invalid && (checkoutForm.get('billingAddress.billingCountry')?.dirty || checkoutForm.get('billingAddress.billingCountry')?.touched)">
+              <div *ngIf="checkoutForm.get('billingAddress.billingCountry')?.errors?.['required']">Country is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="billingStreet">Street</label>
-            <input type="text" class="form-control" id="billingStreet" formControlName="billingStreet">
+            <input type="text" class="form-control" id="billingStreet" formControlName="billingStreet" [class.is-invalid]="checkoutForm.get('billingAddress.billingStreet')?.invalid && (checkoutForm.get('billingAddress.billingStreet')?.dirty || checkoutForm.get('billingAddress.billingStreet')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('billingAddress.billingStreet')?.invalid && (checkoutForm.get('billingAddress.billingStreet')?.dirty || checkoutForm.get('billingAddress.billingStreet')?.touched)">
+              <div *ngIf="checkoutForm.get('billingAddress.billingStreet')?.errors?.['required']">Street is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="billingCity">City</label>
-            <input type="text" class="form-control" id="billingCity" formControlName="billingCity">
+            <input type="text" class="form-control" id="billingCity" formControlName="billingCity" [class.is-invalid]="checkoutForm.get('billingAddress.billingCity')?.invalid && (checkoutForm.get('billingAddress.billingCity')?.dirty || checkoutForm.get('billingAddress.billingCity')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('billingAddress.billingCity')?.invalid && (checkoutForm.get('billingAddress.billingCity')?.dirty || checkoutForm.get('billingAddress.billingCity')?.touched)">
+              <div *ngIf="checkoutForm.get('billingAddress.billingCity')?.errors?.['required']">City is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="billingState">State</label>
-            <input type="text" class="form-control" id="billingState" formControlName="billingState">
+            <input type="text" class="form-control" id="billingState" formControlName="billingState" [class.is-invalid]="checkoutForm.get('billingAddress.billingState')?.invalid && (checkoutForm.get('billingAddress.billingState')?.dirty || checkoutForm.get('billingAddress.billingState')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('billingAddress.billingState')?.invalid && (checkoutForm.get('billingAddress.billingState')?.dirty || checkoutForm.get('billingAddress.billingState')?.touched)">
+              <div *ngIf="checkoutForm.get('billingAddress.billingState')?.errors?.['required']">State is required.</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="billingZipcode">Zipcode</label>
-            <input type="text" class="form-control" id="billingZipcode" formControlName="billingZipcode">
+            <input type="text" class="form-control" id="billingZipcode" formControlName="billingZipcode" [class.is-invalid]="checkoutForm.get('billingAddress.billingZipcode')?.invalid && (checkoutForm.get('billingAddress.billingZipcode')?.dirty || checkoutForm.get('billingAddress.billingZipcode')?.touched)">
+            <div class="invalid-feedback" *ngIf="checkoutForm.get('billingAddress.billingZipcode')?.invalid && (checkoutForm.get('billingAddress.billingZipcode')?.dirty || checkoutForm.get('billingAddress.billingZipcode')?.touched)">
+              <div *ngIf="checkoutForm.get('billingAddress.billingZipcode')?.errors?.['required']">Zipcode is required.</div>
+              <div *ngIf="checkoutForm.get('billingAddress.billingZipcode')?.errors?.['pattern']">Zipcode must be a 5-digit number.</div>
+            </div>
           </div>
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="sameAsShipping" formControlName="sameAsShipping" (change)="onSameAsShippingChange($event)">
@@ -88,13 +142,14 @@
       <div class="card">
         <div class="card-header">Review Order <hr></div>
         <div class="card-body">
-            <p class="card-text" style="font-weight: bold;">Subtotal: {{ subTotal | currency:'EGP'}}</p>
-            <p class="card-text" style="font-weight: bold;">Shipping: {{ shipping | currency:'EGP'}}</p>
-            <p class="card-text price">Total: {{ subTotal | currency:'EGP'}}</p>
-          </div>
-        <div class="card-footer">
-          <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+        <p class="card-text" style="font-weight: bold;">Subtotal: {{ subTotal | currency:'EGP'}}</p>
+        <p class="card-text" style="font-weight: bold;">Shipping: {{ shipping | currency:'EGP'}}</p>
+        <p class="card-text price">Total: {{ subTotal | currency:'EGP'}}</p>
         </div>
+        <div class="card-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="!checkoutForm.valid">Submit</button>
+      </div>
       </div>
     </form>
-  </div>
+
+</div>
