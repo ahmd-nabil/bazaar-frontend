@@ -47,3 +47,7 @@ label {
     border-top: none;
     font-weight: bold;
 }
+
+.invalid-feedback {
+    display: block;
+  }
