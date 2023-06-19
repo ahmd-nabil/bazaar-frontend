@@ -1,6 +1,7 @@
 import { state } from '@angular/animations';
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Address } from 'src/app/model/address';
 import { Country } from 'src/app/model/country';
 import { Order } from 'src/app/model/order';
 import { OrderLine } from 'src/app/model/order-line';
@@ -101,12 +102,22 @@ export class CheckoutFormComponent implements OnInit{
 
   onSubmit() {
     console.warn('Your order has been submitted', this.checkoutForm.value);
-    let order = 
-      new Order(this.checkoutForm.get('customer.firstName').value, this.checkoutForm.get('customer.lastName').value, this.checkoutForm.get('customer.email').value,
-      this.checkoutForm.get('creditCard.cardNumber').value, this.checkoutForm.get('creditCard.cardExpiry').value, this.checkoutForm.get('creditCard.cardCVC').value,
-      this.checkoutForm.get('shippingAddress').value, this.checkoutForm.get('billingAddress').value, this.orderLines);
 
+    let shippingCountry = this.countries[+this.checkoutForm.get('shippingAddress.country').value];
+    let shippingState = this.shippingStates[+this.checkoutForm.get('shippingAddress.state').value];
+    let shippingAddress = new Address(null, shippingCountry, shippingState, this.checkoutForm.get('shippingAddress.street').value, this.checkoutForm.get('shippingAddress.city').value, this.checkoutForm.get('shippingAddress.zipcode').value);
+    
+    let billingCountry = this.countries[+this.checkoutForm.get('billingAddress.country').value];
+    let billingState = this.billingStates[+this.checkoutForm.get('billingAddress.state').value];
+    let billingAddress = new Address(null, billingCountry, billingState, this.checkoutForm.get('billingAddress.street').value, this.checkoutForm.get('billingAddress.city').value, this.checkoutForm.get('billingAddress.zipcode').value);
+    
+    
+    
+    let order = new Order(this.checkoutForm.get('customer.firstName').value, this.checkoutForm.get('customer.lastName').value, this.checkoutForm.get('customer.email').value,
+                this.checkoutForm.get('creditCard.cardNumber').value, this.checkoutForm.get('creditCard.cardExpiry').value, this.checkoutForm.get('creditCard.cardCVC').value,
+                shippingAddress, billingAddress, this.orderLines);
+    console.log(order);
       this.checkoutService.savedOrder(order).subscribe(result => console.log(result));
-    this.checkoutForm.reset();
+      this.checkoutForm.reset();
   }
 }
