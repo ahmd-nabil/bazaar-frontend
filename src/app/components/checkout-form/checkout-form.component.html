@@ -60,7 +60,11 @@
           <h4>Shipping Address</h4>
           <div class="form-group">
             <label for="country">Country</label>
-            <input type="text" class="form-control" id="country" formControlName="country" [class.is-invalid]="checkoutForm.get('shippingAddress.country')?.invalid && (checkoutForm.get('shippingAddress.country')?.dirty || checkoutForm.get('shippingAddress.country')?.touched)">
+            <select
+              (change)="onShippingCountryChange($event)"
+              class="form-control" id="country" formControlName="country" [class.is-invalid]="checkoutForm.get('shippingAddress.country')?.invalid && (checkoutForm.get('shippingAddress.country')?.dirty || checkoutForm.get('shippingAddress.country')?.touched)">
+              <option *ngFor="let country of countries; let i = index;" [value]="i"> {{ country.name }}</option>
+            </select>
             <div class="invalid-feedback" *ngIf="checkoutForm.get('shippingAddress.country')?.invalid && (checkoutForm.get('shippingAddress.country')?.dirty || checkoutForm.get('shippingAddress.country')?.touched)">
               <div *ngIf="checkoutForm.get('shippingAddress.country')?.errors?.['required']">Country is required.</div>
             </div>
@@ -81,7 +85,10 @@
           </div>
           <div class="form-group">
             <label for="state">State</label>
-            <input type="text" class="form-control" id="state" formControlName="state" [class.is-invalid]="checkoutForm.get('shippingAddress.state')?.invalid && (checkoutForm.get('shippingAddress.state')?.dirty || checkoutForm.get('shippingAddress.state')?.touched)">
+            <select class="form-control" id="state" formControlName="state" [class.is-invalid]="checkoutForm.get('shippingAddress.state')?.invalid && (checkoutForm.get('shippingAddress.state')?.dirty || checkoutForm.get('shippingAddress.state')?.touched)">
+              <option value="">-- Select a state --</option>
+              <option *ngFor="let state of shippingStates; let i = index;" [value]="i">{{ state.name }}</option>
+            </select>
             <div class="invalid-feedback" *ngIf="checkoutForm.get('shippingAddress.state')?.invalid && (checkoutForm.get('shippingAddress.state')?.dirty || checkoutForm.get('shippingAddress.state')?.touched)">
               <div *ngIf="checkoutForm.get('shippingAddress.state')?.errors?.['required']">State is required.</div>
             </div>
@@ -99,7 +106,11 @@
           <h4>Billing Address</h4>
           <div class="form-group">
             <label for="country">Country</label>
-            <input type="text" class="form-control" id="country" formControlName="country" [class.is-invalid]="checkoutForm.get('billingAddress.country')?.invalid && (checkoutForm.get('billingAddress.country')?.dirty || checkoutForm.get('billingAddress.country')?.touched)">
+            <select
+            (change)="onBillingCountryChange($event)"
+              class="form-control" id="country" formControlName="country" [class.is-invalid]="checkoutForm.get('billingAddress.country')?.invalid && (checkoutForm.get('billingAddress.country')?.dirty || checkoutForm.get('billingAddress.country')?.touched)">
+              <option *ngFor="let country of countries; let i = index;" [value]="i"> {{ country.name }} </option>
+            </select>
             <div class="invalid-feedback" *ngIf="checkoutForm.get('billingAddress.country')?.invalid && (checkoutForm.get('billingAddress.country')?.dirty || checkoutForm.get('billingAddress.country')?.touched)">
               <div *ngIf="checkoutForm.get('billingAddress.country')?.errors?.['required']">Country is required.</div>
             </div>
@@ -120,7 +131,10 @@
           </div>
           <div class="form-group">
             <label for="state">State</label>
-            <input type="text" class="form-control" id="state" formControlName="state" [class.is-invalid]="checkoutForm.get('billingAddress.state')?.invalid && (checkoutForm.get('billingAddress.state')?.dirty || checkoutForm.get('billingAddress.state')?.touched)">
+            <select class="form-control" id="state" formControlName="state" [class.is-invalid]="checkoutForm.get('billingAddress.state')?.invalid && (checkoutForm.get('billingAddress.state')?.dirty || checkoutForm.get('billingAddress.state')?.touched)">
+              <option value="">-- Select a state --</option>
+              <option *ngFor="let state of billingStates; let i = index;" [value]="i">{{ state.name }}</option>
+            </select>
             <div class="invalid-feedback" *ngIf="checkoutForm.get('billingAddress.state')?.invalid && (checkoutForm.get('billingAddress.state')?.dirty || checkoutForm.get('billingAddress.state')?.touched)">
               <div *ngIf="checkoutForm.get('billingAddress.state')?.errors?.['required']">State is required.</div>
             </div>

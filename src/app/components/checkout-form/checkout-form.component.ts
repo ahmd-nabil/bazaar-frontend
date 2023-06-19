@@ -1,6 +1,10 @@
+import { state } from '@angular/animations';
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Country } from 'src/app/model/country';
 import { OrderLine } from 'src/app/model/order-line';
+import { State } from 'src/app/model/state';
+import { CheckoutService } from 'src/app/services/checkout.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
@@ -16,8 +20,12 @@ export class CheckoutFormComponent implements OnInit{
   shipping: number = 0;
   total: number = 0;
 
+  countries: Country[] = [];
+  shippingStates: State[] = [];
+  billingStates: State[] = []
   constructor(private formBuilder: FormBuilder,
-              private shoppingCartService : ShoppingCartService) {}
+              private shoppingCartService : ShoppingCartService,
+              private checkoutService: CheckoutService) {}
 
   ngOnInit() {
     this.checkoutForm = this.formBuilder.group({
@@ -51,8 +59,8 @@ export class CheckoutFormComponent implements OnInit{
     this.shoppingCartService.cartItemsSubject.subscribe(cartItems => {
       this.orderLines = cartItems.map(item => new OrderLine(item));
     });
-
     this.shoppingCartService.totalPrice.subscribe(value => this.subTotal = value);
+    this.checkoutService.getCountries().subscribe(countries => this.countries = countries);
   }
 
   onSameAsShippingChange(event: any) {
@@ -70,6 +78,18 @@ export class CheckoutFormComponent implements OnInit{
       this.checkoutForm.get('billingAddress.state')?.setValue('');
       this.checkoutForm.get('billingAddress.zipcode')?.setValue('');
     }
+  }
+
+  onShippingCountryChange(event: any) {
+    let idx = event.target.value;
+    let country = this.countries[idx];
+    this.checkoutService.getStates(country.id).subscribe(states=>this.shippingStates = states);
+  }
+
+  onBillingCountryChange(event: any) {
+    let idx = event.target.value;
+    let country = this.countries[idx];
+    this.checkoutService.getStates(country.id).subscribe(states => this.billingStates = states);
   }
 
   onSubmit() {
