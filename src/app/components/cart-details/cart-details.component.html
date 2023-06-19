@@ -6,7 +6,7 @@
       <p class="card-text">Subtotal: {{ subTotal | currency:'EGP'}}</p>
       <p class="card-text">Shipping: {{ shipping | currency:'EGP'}}</p>
       <p class="card-text price">Total: {{ subTotal | currency:'EGP'}}</p>
-      <button class="btn btn-primary btn-block">Proceed to Checkout</button>
+      <button class="btn btn-primary btn-block" routerLink="/checkout">Proceed to Checkout</button>
     </div>
     <div class="col-xs-12 col-lg-8">
       <table class="table table-striped">
