@@ -1,13 +1,14 @@
 import { Injectable, OnInit } from '@angular/core';
 import { CartItem } from '../model/cart-item';
 import { Product } from '../model/product';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService{
   cartItems : CartItem[] = [];
+  cartItemsSubject : BehaviorSubject<CartItem[]> = new BehaviorSubject(this.cartItems) ;
   totalItems : BehaviorSubject<number> = new BehaviorSubject(this.getTotalItems());
   totalPrice: BehaviorSubject<number> = new BehaviorSubject(this.getTotalPrice());
 
@@ -22,7 +23,7 @@ export class ShoppingCartService{
   notifyAll() {
     this.totalItems.next(this.getTotalItems());
     this.totalPrice.next(this.getTotalPrice());
-
+    this.cartItemsSubject.next(this.cartItems);
     // assuming that localstorage change is also a notification
     localStorage.setItem('shoppingCart', JSON.stringify(this.cartItems));
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OrderLine } from 'src/app/model/order-line';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-checkout-form',
@@ -8,11 +10,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CheckoutFormComponent implements OnInit{
   checkoutForm !: FormGroup ;
+
+  orderLines: OrderLine[] = [];
   subTotal: number = 0;
   shipping: number = 0;
   total: number = 0;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,
+              private shoppingCartService : ShoppingCartService) {}
 
   ngOnInit() {
     this.checkoutForm = this.formBuilder.group({
@@ -42,6 +47,12 @@ export class CheckoutFormComponent implements OnInit{
         sameAsShipping: false
       })
     });
+
+    this.shoppingCartService.cartItemsSubject.subscribe(cartItems => {
+      this.orderLines = cartItems.map(item => new OrderLine(item));
+    });
+
+    this.shoppingCartService.totalPrice.subscribe(value => this.subTotal = value);
   }
 
   onSameAsShippingChange(event: any) {
