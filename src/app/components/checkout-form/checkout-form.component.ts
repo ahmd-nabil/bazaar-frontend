@@ -2,6 +2,7 @@ import { state } from '@angular/animations';
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Country } from 'src/app/model/country';
+import { Order } from 'src/app/model/order';
 import { OrderLine } from 'src/app/model/order-line';
 import { State } from 'src/app/model/state';
 import { CheckoutService } from 'src/app/services/checkout.service';
@@ -99,8 +100,13 @@ export class CheckoutFormComponent implements OnInit{
   }
 
   onSubmit() {
-    // Process checkout data here
     console.warn('Your order has been submitted', this.checkoutForm.value);
+    let order = 
+      new Order(this.checkoutForm.get('customer.firstName').value, this.checkoutForm.get('customer.lastName').value, this.checkoutForm.get('customer.email').value,
+      this.checkoutForm.get('creditCard.cardNumber').value, this.checkoutForm.get('creditCard.cardExpiry').value, this.checkoutForm.get('creditCard.cardCVC').value,
+      this.checkoutForm.get('shippingAddress').value, this.checkoutForm.get('billingAddress').value, this.orderLines);
+
+      this.checkoutService.savedOrder(order).subscribe(result => console.log(result));
     this.checkoutForm.reset();
   }
 }

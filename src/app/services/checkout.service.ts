@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { Country } from '../model/country';
 import { State } from '../model/state';
+import { Order } from '../model/order';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class CheckoutService implements OnInit{
     return this.http.get<State[]>(this.STATES_API+"/"+countryId);
   }
   
-  savedOrder() {
+  savedOrder(order: Order) {
+    return this.http.post(this.ORDERS_API, order);
   }
 }
