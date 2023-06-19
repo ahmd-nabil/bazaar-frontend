@@ -67,6 +67,7 @@ export class CheckoutFormComponent implements OnInit{
     let same: boolean = event.target.checked == null ? false : event.target.checked;
     if(same) {
       this.checkoutForm.get('billingAddress.country')?.setValue(this.checkoutForm.get('shippingAddress.country')?.getRawValue());
+      this.onBillingCountryChange();
       this.checkoutForm.get('billingAddress.street')?.setValue(this.checkoutForm.get('shippingAddress.street')?.getRawValue());
       this.checkoutForm.get('billingAddress.city')?.setValue(this.checkoutForm.get('shippingAddress.city')?.getRawValue());
       this.checkoutForm.get('billingAddress.state')?.setValue(this.checkoutForm.get('shippingAddress.state')?.getRawValue());
@@ -78,18 +79,23 @@ export class CheckoutFormComponent implements OnInit{
       this.checkoutForm.get('billingAddress.state')?.setValue('');
       this.checkoutForm.get('billingAddress.zipcode')?.setValue('');
     }
+    console.log(this.checkoutForm.get('billingAddress.state')?.value)
   }
 
-  onShippingCountryChange(event: any) {
-    let idx = event.target.value;
-    let country = this.countries[idx];
-    this.checkoutService.getStates(country.id).subscribe(states=>this.shippingStates = states);
+  onShippingCountryChange() {
+    let idx = this.checkoutForm.get('shippingAddress.country')?.value;
+    if(idx != null) {
+      let country = this.countries[idx];
+      this.checkoutService.getStates(country.id).subscribe(states=>this.shippingStates = states);  
+    }
   }
 
-  onBillingCountryChange(event: any) {
-    let idx = event.target.value;
-    let country = this.countries[idx];
-    this.checkoutService.getStates(country.id).subscribe(states => this.billingStates = states);
+  onBillingCountryChange() {
+    let idx = this.checkoutForm.get('billingAddress.country')?.value;
+    if(idx != null) {
+      let country = this.countries[idx];
+      this.checkoutService.getStates(country.id).subscribe(states => this.billingStates = states);
+    }
   }
 
   onSubmit() {

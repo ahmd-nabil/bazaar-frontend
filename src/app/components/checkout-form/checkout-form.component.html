@@ -61,7 +61,7 @@
           <div class="form-group">
             <label for="country">Country</label>
             <select
-              (change)="onShippingCountryChange($event)"
+              (change)="onShippingCountryChange()"
               class="form-control" id="country" formControlName="country" [class.is-invalid]="checkoutForm.get('shippingAddress.country')?.invalid && (checkoutForm.get('shippingAddress.country')?.dirty || checkoutForm.get('shippingAddress.country')?.touched)">
               <option *ngFor="let country of countries; let i = index;" [value]="i"> {{ country.name }}</option>
             </select>
@@ -107,7 +107,7 @@
           <div class="form-group">
             <label for="country">Country</label>
             <select
-            (change)="onBillingCountryChange($event)"
+            (change)="onBillingCountryChange()"
               class="form-control" id="country" formControlName="country" [class.is-invalid]="checkoutForm.get('billingAddress.country')?.invalid && (checkoutForm.get('billingAddress.country')?.dirty || checkoutForm.get('billingAddress.country')?.touched)">
               <option *ngFor="let country of countries; let i = index;" [value]="i"> {{ country.name }} </option>
             </select>
