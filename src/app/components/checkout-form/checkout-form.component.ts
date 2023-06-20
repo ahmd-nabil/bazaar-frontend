@@ -86,16 +86,16 @@ export class CheckoutFormComponent implements OnInit{
 
   onShippingCountryChange() {
     let idx = this.checkoutForm.get('shippingAddress.country')?.value;
-    if(idx != null) {
-      let country = this.countries[idx];
-      this.checkoutService.getStates(country.id).subscribe(states=>this.shippingStates = states);  
+    let country = this.countries[idx];
+    if(country != null && country != undefined) {
+      this.checkoutService.getStates(country.id).subscribe(states=>this.shippingStates = states);
     }
   }
 
   onBillingCountryChange() {
     let idx = this.checkoutForm.get('billingAddress.country')?.value;
-    if(idx != null) {
-      let country = this.countries[idx];
+    let country = this.countries[idx];
+    if(country != null && country != undefined) {
       this.checkoutService.getStates(country.id).subscribe(states => this.billingStates = states);
     }
   }
