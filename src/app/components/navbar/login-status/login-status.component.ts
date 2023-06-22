@@ -28,7 +28,7 @@ export class LoginStatusComponent {
 
   logout() {
     this.oktaAuth.signOut();
+    this.isAuthenticated = false;
+    this.userClaims = null;
   }
-
-
 }
