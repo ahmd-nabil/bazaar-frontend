@@ -1,5 +1,17 @@
 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!isAuthenticated">
       <a class="nav-link" routerLink="/login"><i class="fas fa-user me-1"></i>Login</a>
     </li>
-  </ul>
+
+
+  <li class="nav-item dropdown" *ngIf="isAuthenticated">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-user"></i> {{ userClaims?.name ?? 'User' }}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="#">Profile</a>
+      <a class="dropdown-item" href="#" (click)="logout()">Log Out</a>
+    </div>
+  </li>
+
+</ul>
