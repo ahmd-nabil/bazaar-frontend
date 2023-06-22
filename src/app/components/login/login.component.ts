@@ -24,6 +24,9 @@ export class LoginComponent implements OnInit{
         pkce: true,
         issuer: oktaConfig.oidc.issuer,
         scopes: oktaConfig.oidc.scopes
+      },
+      features: {
+        registration: true
       }
     });
   }
