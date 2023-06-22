@@ -10,11 +10,12 @@ import { LoginComponent } from './components/login/login.component';
 import { OktaAuthGuard, OktaCallbackComponent } from '@okta/okta-angular';
 import { MyprofileComponent } from './components/myprofile/myprofile.component';
 import OktaAuth from '@okta/okta-auth-js';
+import { customAuthGuard } from './services/custom-auth.guard';
 
-function sendToLogin(oktaAuth: OktaAuth, injector: Injector) {
+/* function sendToLogin(oktaAuth: OktaAuth, injector: Injector) {
   let router = injector.get(Router);
   router.navigate(['/login']);
-}
+} */
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutFormComponent},
   { path: 'login/callback', component: OktaCallbackComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'myprofile', component: MyprofileComponent, canActivate: [ OktaAuthGuard ], data:{onAuthRequired: sendToLogin} },
+/*   { path: 'myprofile', component: MyprofileComponent, canActivate: [ OktaAuthGuard ], data:{onAuthRequired: sendToLogin} },*/
+  { path: 'myprofile', component: MyprofileComponent, canActivate: [customAuthGuard]},
   { path:"**", component: MainComponent }
 ];
 
