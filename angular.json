@@ -13,6 +13,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "p-cancelable",
+              "cross-fetch",
+              "tiny-emitter",
+              "clipboard",
+              "jquery",
+              "@sindresorhus/to-milliseconds",
+              "parse-ms",
+              "q",
+              "detect-node"
+            ],
             "outputPath": "dist/bazaar-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
