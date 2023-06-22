@@ -20,6 +20,14 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 import { LoginComponent } from './components/login/login.component';
 
+import { OktaAuthModule } from '@okta/okta-angular';
+import { OktaAuth } from '@okta/okta-auth-js';
+import oktaConfig from './config/okta-config';
+
+
+
+const oktaAuth = new OktaAuth(oktaConfig.oidc);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +52,8 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     BrowserAnimationsModule,
     ClipboardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OktaAuthModule.forRoot({ oktaAuth })
   ],
   providers: [],
   bootstrap: [AppComponent]
