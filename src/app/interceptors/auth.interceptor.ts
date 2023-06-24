@@ -16,11 +16,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.oktaAuthStateServier.authState$.subscribe(authState => this.token =  authState.accessToken);
-    request = request.clone({
-      setHeaders: {
-        Authorization: 'Bearer ' + this.token.accessToken
-      }
-    })
+    if(this.token != undefined) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: 'Bearer ' + this.token.accessToken
+        }
+      })  
+    }
     return next.handle(request);
   }
 }
