@@ -16,6 +16,7 @@
             <th scope="col">Unit Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Total</th>
+            <th scope="col"></th> <!-- New column for remove button -->
           </tr>
         </thead>
         <tbody>
@@ -49,6 +50,13 @@
               </div>
             </td>
             <td style="font-weight: bold;">{{ item.quantity * item.unitPrice | currency:'EGP' }}</td>
+            <td> <!-- New column for remove button -->
+              <a (click)="onQuantityChange(item, '0')" style="cursor: pointer;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                <path d="M8 6.586L2.757 1.343a1 1 0 0 0-1.414 1.414L6.586 8l-5.243 5.243a1 1 0 1 0 1.414 1.414L8 9.414l5.243 5.243a1 1 0 1 0 1.414-1.414L9.414 8l5.243-5.243a1 1 0 0 0-1.414-1.414L8 6.586z"/>
+              </svg>
+            </a>
+            </td>
           </tr>
         </tbody>
       </table>
