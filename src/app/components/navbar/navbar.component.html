@@ -35,8 +35,8 @@
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" #searchQ>
-        <button class="btn btn-outline-warning" type="submit" (click)="search(searchQ.value)"><i class="fas fa-search"></i></button>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchQ" [ngModelOptions]="{standalone: true}">
+        <button class="btn btn-outline-success" type="submit" (click)="search()" [disabled]="searchQ.length < 3"><i class="fas fa-search"></i></button>
       </form>
       <app-login-status></app-login-status>
     </div>

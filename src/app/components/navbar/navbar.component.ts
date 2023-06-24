@@ -7,9 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  searchQ: string = '';
+
   constructor(private router: Router) {}
 
-  search(search : string) {
-    this.router.navigate(['products'], {queryParams: {'search': search}});
+  search() {
+    this.router.navigate(['products'], {queryParams: {'search': this.searchQ}});
   }
 }
